@@ -1,14 +1,14 @@
 //formatREST
 
-module.exports = function formatrest(values,message,err,response) {
+module.exports = function formatrest(values,message,err,response,status) {
         const data = {
-            'status': 200,
             'messages' : message,
             'data': values,
             'error': {
                 'messages' : err
             },
         };
+        response.status(status)
         response.json(data);
         response.end();    
     }

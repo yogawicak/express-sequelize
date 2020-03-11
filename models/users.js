@@ -19,6 +19,18 @@ module.exports = (Sequelize, DataTypes) => {
       allowNull: false,
       field: 'password'
     },
+    first_name:{
+      type: DataTypes.STRING(20),
+      allowNull: false,
+    },
+    last_name:{
+      type:DataTypes.STRING(20),
+      allowNull: false,
+    },
+    bio:{
+      type:DataTypes.STRING(100),
+      allowNull:false,
+    },
   },{
     tableName: 'users',
   },{
@@ -49,10 +61,12 @@ module.exports = (Sequelize, DataTypes) => {
     //function dijalan lalu passing parameter models.{nama tabel}
     console.log(models)
     User.hasOne(models.user_token)
+    // User.hasOne(models.Profile)
     User.hasMany(models.dataBengkel,{as:'uploader_bengkel',foreignKey:'userId'})
+      // data_bengkel.hasMany(models.users,{as:'uploader_bengkel',foreignKey:'data_bengkel_id'})
   }
 
-  Sequelize.sync({force:true})
+  // Sequelize.sync({force:true})
   return User
 };
 

@@ -23,9 +23,9 @@ const verifyToken = async (req,res,next) => {
     if (token == null) return res.sendStatus(401)
     try{
         const b = await checkJwtToken(token,secret.jwtkey)
-        console.log(b)
         const a = await ChecktokenDB(token)
-        console.log(a)
+        console.log(b)
+        res.locals.usernameToken = b
         if (a){
             return next()
         }

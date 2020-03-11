@@ -6,6 +6,7 @@ const bodyparser = require('body-parser')
 const userRoute = require('./routes/userRoute')
 const verifyToken = require('./middleware/middleware')
 const bengkelRoute = require('./routes/bengkelRoute')
+const profileRoute = require('./routes/profileRoute')
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended : true}))
@@ -20,6 +21,7 @@ app.use((req,res,next) => {
 //Routes Path
 app.use('/api/user',userRoute)
 app.use('/api/data',bengkelRoute)
+app.use('/api/profile',profileRoute)
 
 //TestAPI
 app.get('/testapi',(req, res) =>{

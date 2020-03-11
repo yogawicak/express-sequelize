@@ -12,7 +12,8 @@ module.exports = function(sequelize, DataTypes) {
     namaBengkel: {
       type: DataTypes.STRING(100),
       allowNull: false,
-      field: 'nama_bengkel'
+      field: 'nama_bengkel',
+      unique: true
     },
     alamatBengkel: {
       type: DataTypes.TEXT,
@@ -35,13 +36,13 @@ module.exports = function(sequelize, DataTypes) {
       field: 'jam_tutup'
     },
     latitude: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
+      type: DataTypes.DECIMAL(10,8),
+      allowNull: false,
       field: 'Latitude'
     },
     longitude: {
-      type: DataTypes.DECIMAL,
-      allowNull: true,
+      type: DataTypes.DECIMAL(11,8),
+      allowNull: false,
       field: 'Longitude'
     },
     imgBengkel: {
@@ -52,6 +53,10 @@ module.exports = function(sequelize, DataTypes) {
   }, {
     tableName: 'data_bengkel'
   });
+  data_bengkel.associate = (models) => {
+    // data_bengkel.hasMany(models.users,{as:'uploader_bengkel',foreignKey:'data_bengkel_id'})
+    // models.dataBengkel.belongsTo(models.users,{as:'uploader_bengkel'})
+  }
   // data_bengkel.associate = (models) => {
   //   data_bengkel.hasMany(models.User,{as: 'uploader_bengkel'})
   // }
