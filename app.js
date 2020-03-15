@@ -7,15 +7,17 @@ const userRoute = require('./routes/userRoute')
 const verifyToken = require('./middleware/middleware')
 const bengkelRoute = require('./routes/bengkelRoute')
 const profileRoute = require('./routes/profileRoute')
+const swaggerUi = require('swagger-ui-express')
+const swaggerDoc = require('./openapi.json')
 
 app.use(bodyparser.json())
 app.use(bodyparser.urlencoded({extended : true}))
 
 //Trace Log Request
-app.use((req,res,next) => {
-  console.log("masuk middleware lagi")
-  next()
-})
+// app.use((req,res,next) => {
+//   console.log("masuk middleware lagi")
+//   next()
+// })
 
 
 //Routes Path
@@ -24,9 +26,12 @@ app.use('/api/data',bengkelRoute)
 app.use('/api/profile',profileRoute)
 
 //TestAPI
-app.get('/testapi',(req, res) =>{
-  res.send('test sukses')
+app.get('/',(req, res) => { 
+  res.send('Welcome') 
 })
+
+//Swagger Documentation
+app.use('/swagger',swaggerUi.serve,swaggerUi.setup(swaggerDoc))
 
 module.exports = app;
 //MANTAP
